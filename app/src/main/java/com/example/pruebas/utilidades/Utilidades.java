@@ -1,0 +1,41 @@
+package com.example.pruebas.utilidades;
+
+public class Utilidades {
+
+    //*************PARAMETROS PARA LA TABLA USUARIOS
+    //CAMPOS
+    public static final String TABLA_USUARIOS="USUARIOS";
+    public static final String CEDULA="CED_USU";
+    public static final String NOMBRE="NOM_USU";
+    //SENTENCIA SQL
+    public static final String CREAR_TABLA_USUARIO="CREATE TABLE"+ TABLA_USUARIOS +"( " + CEDULA +" TEXT PRIMARY KEY ,"+ NOMBRE +"TEXT)";
+
+    //***************PARAMETROS PARA LA TABLA COMPRAS PLANIFICADAS
+    //CAMPOS
+    public static final String TABLA_COMPRAS_PLANIFICADAS="COMPRAS_PLANIFICADAS";
+    public static final String NUMERO_COMPRA="NUM_COM";
+    public static final String NOMBRE_COMPRA="NOM_COM";
+    public static final String CEDULA_USUARIO_COMPRA="CED_USU_COM";
+    //SENTENCIA SQL
+    public static final String CREAR_TABLA_COMPRA_PLANIFICADA="CREATE TABLE"+TABLA_COMPRAS_PLANIFICADAS+" ("+NUMERO_COMPRA+" INTEGER PRIMARY KEY AUTOINCREMENT,"+ NOMBRE_COMPRA +"TEXT, FOREIGN KEY ("+CEDULA_USUARIO_COMPRA+") REFERENCES "+TABLA_USUARIOS+"("+CEDULA+"))";
+
+    //***************PARAMETROS PARA LA TABLA PRODUCTOS
+    //CAMPOS
+    public static final String TABLA_PRODUCTOS="PRODUCTOS";
+    public static final String NOMBRE_PRODUCTO="NOM_PRO";
+    public static final String CATEGORIA_PRODUCTO="CAT_PRO";
+    //SENTENCIA SQL
+    public static final String CREAR_TABLA_PRODUCTOS="CREATE TABLE"+ TABLA_PRODUCTOS+"("+NOMBRE_PRODUCTO+" TEXT PRIMARY KEY,"+CATEGORIA_PRODUCTO+"TEXT)";
+
+    //***************PARAMETROS PARA LA TABLA DETALLE DE COMPRAS
+    //CAMPOS
+    public static final String TABLA_DETALLE="DETALLE";
+    public static final String ID_DETALLE="ID_DET";
+    public static final String NUMERO_COMPRA_DETALLE="NUM_COM_DET";
+    public static final String NOMBRE_PRODUCTO_DETALLE="NOM_PRO_DET";
+    //SENTENCIA SQL
+    public static final String CREAR_TABLA_DETALLE_COMPRA="CREATE TABLE "+TABLA_DETALLE+" ("+ID_DETALLE +"TEXT PRIMARY KEY AUTOINCREMENT, FOREIGN KEY ("+NUMERO_COMPRA_DETALLE+") REFERENCES"+ TABLA_COMPRAS_PLANIFICADAS+ "("+NUMERO_COMPRA+"),FOREIGN KEY ("+NOMBRE_PRODUCTO_DETALLE+") REFERENCES "+TABLA_PRODUCTOS+"("+NOMBRE_PRODUCTO+"))";
+
+
+
+}

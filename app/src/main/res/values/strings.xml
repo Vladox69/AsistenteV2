@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Pruebas</string>
+    <string name="txt_usuario_String">Cedula</string>
+    <string name="bt_ingresar_String">Ingresar</string>
+    <string name="bt_registrar_String">Registrar</string>
+    <string name="txt_nombre_String">Nombre</string>
+    <string name="bt_nueva_lista_String">Nueva Lista</string>
+    <string name="bt_listas_String">Listas</string>
+    <string name="bt_productos_String">Productos</string>
+    <string name="txt_snack_String">Snacks</string>
+    <string name="txt_peces_String">Peces</string>
+    <string name="txt_siguiente_String">Siguiente</string>
+    <string name="txt_Prueba_String"></string>
+</resources>
