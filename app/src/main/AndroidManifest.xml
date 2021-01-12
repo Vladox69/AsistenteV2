@@ -4,12 +4,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/icono_app"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Pruebas">
-        <activity android:name=".nuevaLista"></activity>
+        android:theme="@style/Theme.Pruebas"
+        android:fullBackupContent="">
+        <activity android:name=".nuevaLista" />
         <activity android:name=".Productos" />
         <activity android:name=".Principal" />
         <activity android:name=".RegistroUsuario" />
