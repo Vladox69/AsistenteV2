@@ -31,4 +31,9 @@ public class Principal extends AppCompatActivity {
         startActivity(intProductos);
     }
 
+    public void abrirIntNuevaLista(View view){
+        Intent intNuevaLista = new Intent(this,nuevaLista.class);
+        startActivity(intNuevaLista);
+    }
+
 }
