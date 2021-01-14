@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,7 +29,14 @@ public class adapterProductos extends RecyclerView.Adapter<adapterProductos.View
 
     @Override
     public void onBindViewHolder(@NonNull adapterProductos.ViewHolderProductos holder, int position) {
-        holder.asignarProductos(ListProductos.get(position).getNombreProducto());
+        holder.asignarProductos(ListProductos.get(position));
+        holder.nombreProductos.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                //set your object's last status
+                ListProductos.get(position).setSeleccion(true);
+            }
+        });
     }
 
     @Override
@@ -43,8 +51,9 @@ public class adapterProductos extends RecyclerView.Adapter<adapterProductos.View
             nombreProductos=(CheckBox) itemView.findViewById(R.id.checkNombreProducto);
         }
 
-        public void asignarProductos(String nombreProducto) {
-        nombreProductos.setText(nombreProducto);
+        public void asignarProductos(Producto producto) {
+        nombreProductos.setText(producto.getNombreProducto());
+        nombreProductos.setChecked(producto.isSeleccion());
         }
     }
 }
