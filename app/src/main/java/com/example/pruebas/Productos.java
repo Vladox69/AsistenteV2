@@ -21,11 +21,10 @@ import java.util.ArrayList;
 public class Productos extends AppCompatActivity {
 
     ArrayList<Producto> listaProductos;
-    ArrayList<Producto> listaProductosFiltrados;
     ArrayList<String> listCategorias;
     ConexionSQLiteHelper conn;
     RecyclerView recyclerProductos;
-    Spinner comboCategorias;
+    public static Spinner comboCategorias;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +45,20 @@ public class Productos extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(position!=0){
-                    listaProductosFiltrada();
-                    adapterProductos adapter=new adapterProductos(listaProductosFiltrados);
+                    Producto producto=null;
+                    ArrayList<Producto> filtrados =new ArrayList<>();
+                    String nombreCategoria=comboCategorias.getSelectedItem().toString();
+                    for(int i=0;i<listaProductos.size();i++){
+                        if(listaProductos.get(i).getCategoriProducto().equals(nombreCategoria)){
+                            producto=listaProductos.get(i);
+                            Log.i("Categorias",listaProductos.get(i).getCategoriProducto());
+                            filtrados.add(producto);
+                        }
+                    }
+                    adapterProductos adapter=new adapterProductos(filtrados);
                     recyclerProductos.setAdapter(adapter);
                 }else{
+
                     adapterProductos adapter=new adapterProductos(listaProductos);
                     recyclerProductos.setAdapter(adapter);
                 }
@@ -87,21 +96,22 @@ public class Productos extends AppCompatActivity {
         }
     }
 
-    private void listaProductosFiltrada(){
+    /*public void listaProductosFiltrada(ArrayList<Producto> lista){
     String nombreCategoria=comboCategorias.getSelectedItem().toString();
     Log.i("diferenciar",nombreCategoria);
     Producto producto=null;
     listaProductosFiltrados=new ArrayList<Producto>();
-    for(int i=0;i<listaProductos.size();i++){
-        if(listaProductos.get(i).getCategoriProducto().equals(nombreCategoria)){
+    for(int i=0;i<lista.size();i++){
+        if(lista.get(i).getCategoriProducto().equals(nombreCategoria)){
             producto=new Producto();
-            producto.setNombreProducto(listaProductos.get(i).getNombreProducto());
-            producto.setCategoriProducto(listaProductos.get(i).getCategoriProducto());
-            Log.i("Categorias",listaProductos.get(i).getCategoriProducto());
+            producto.setNombreProducto(lista.get(i).getNombreProducto());
+            producto.setCategoriProducto(lista.get(i).getCategoriProducto());
+            producto.setSeleccion(lista.get(i).isSeleccion());
+            Log.i("Categorias",lista.get(i).getCategoriProducto());
             listaProductosFiltrados.add(producto);
         }
     }
 
-    }
+    }*/
 
 }
