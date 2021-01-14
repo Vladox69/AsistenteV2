@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Pruebas</string>
+    <string name="app_name">Asistente De Compras</string>
     <string name="txt_usuario_String">Cedula</string>
     <string name="bt_ingresar_String">Ingresar</string>
     <string name="bt_registrar_String">Registrar</string>
@@ -12,4 +12,9 @@
     <string name="txt_siguiente_String">Siguiente</string>
     <string name="txt_Prueba_String"></string>
     <string name="txt_boton_guardar_String">Guardar</string>
+    <string name="txtAgregarProductos">Aqui puede ingresar productos a su lista</string>
+    <string name="txtNuevaLista">Detalles Nueva Lista</string>
+    <string name="ayudaNombreLista">Ingrese el nombre de la lista</string>
+    <string name="txtFechaACompra">Fecha a realizar la compra</string>
+    <string name="txtListaGuardada">Lista Guardada</string>
 </resources>
