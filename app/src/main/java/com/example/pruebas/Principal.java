@@ -21,8 +21,6 @@ public class Principal extends AppCompatActivity {
         String nombre=preferences.getString("NOM_USU",null);
         if(cedula!=null && nombre!=null){
             txtPrueba.setText("Bienvenido "+nombre);
-        }else{
-            txtPrueba.setText("Nada");
         }
     }
 

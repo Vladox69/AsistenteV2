@@ -11,4 +11,5 @@
     <string name="txt_peces_String">Peces</string>
     <string name="txt_siguiente_String">Siguiente</string>
     <string name="txt_Prueba_String"></string>
+    <string name="txt_boton_guardar_String">Guardar</string>
 </resources>
