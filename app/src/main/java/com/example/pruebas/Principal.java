@@ -9,8 +9,10 @@ import android.view.View;
 import android.widget.TextView;
 
 public class Principal extends AppCompatActivity {
+
     SharedPreferences preferences;
     TextView txtPrueba;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +22,7 @@ public class Principal extends AppCompatActivity {
         String cedula=preferences.getString("CED_USU",null);
         String nombre=preferences.getString("NOM_USU",null);
         if(cedula!=null && nombre!=null){
-            txtPrueba.setText("Bienvenido "+nombre);
+            txtPrueba.setText("Bienvenido "+nombre+" "+cedula);
         }
     }
 
@@ -30,8 +32,13 @@ public class Principal extends AppCompatActivity {
     }
 
     public void abrirIntNuevaLista(View view){
-        Intent intNuevaLista = new Intent(this,nuevaLista.class);
-        startActivity(intNuevaLista);
+        Intent crearNuevaLista = new Intent(this,crearLista.class);
+        startActivity(crearNuevaLista);
+    }
+
+    public void abrirIntListas(View view){
+        Intent intListasUsuario=new Intent(this,listasUsuario.class);
+        startActivity(intListasUsuario);
     }
 
 }

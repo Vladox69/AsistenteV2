@@ -27,6 +27,7 @@
         android:id="@+id/btGuardar"
         android:layout_width="145dp"
         android:layout_height="54dp"
+        android:onClick="guardarProductos"
         android:text="@string/txt_boton_guardar_String"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/comboCategorias"

@@ -34,7 +34,7 @@ public class adapterProductos extends RecyclerView.Adapter<adapterProductos.View
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //set your object's last status
-                ListProductos.get(position).setSeleccion(true);
+                ListProductos.get(position).setSeleccion(isChecked);
             }
         });
     }
@@ -55,5 +55,6 @@ public class adapterProductos extends RecyclerView.Adapter<adapterProductos.View
         nombreProductos.setText(producto.getNombreProducto());
         nombreProductos.setChecked(producto.isSeleccion());
         }
+
     }
 }

@@ -17,4 +17,7 @@
     <string name="ayudaNombreLista">Ingrese el nombre de la lista</string>
     <string name="txtFechaACompra">Fecha a realizar la compra</string>
     <string name="txtListaGuardada">Lista Guardada</string>
+    <string name="txt_nombre_lista_String">Nombre de tu lista</string>
+    <string name="txt_tus_listas_String">Tus listas</string>
+    <string name="txt_tus_productos_String">Tus productos</string>
 </resources>

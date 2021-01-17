@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     }else {
         Toast.makeText(this, "Debe llenar los campos", Toast.LENGTH_SHORT).show();
     }
+    conn.close();
     return false;
     }
 

@@ -27,10 +27,7 @@ public class nuevaLista extends AppCompatActivity {
 
     }
 
-    public void abrirIntAgregarProductosListaVacia(View view){
-        Intent intNuevosProd =new Intent(this,AgregarProductosListaVacia.class);
-        startActivity(intNuevosProd);
-    }
+
 
     public void onClick(View view){
         registrarLista();
@@ -45,6 +42,7 @@ public class nuevaLista extends AppCompatActivity {
         values.put(Utilidades.CEDULA_USUARIO_COMPRA,cedUsuCompra.getText().toString());
 
         Long idResultante = db.insert("COMPRAS_PLANIFICADAS","NUM_COM",values);
+
         Toast.makeText(getApplicationContext(), "Lista Numero: " + idResultante,Toast.LENGTH_SHORT).show();
     }
 

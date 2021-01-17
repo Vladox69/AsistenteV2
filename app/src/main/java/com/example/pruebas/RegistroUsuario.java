@@ -38,6 +38,7 @@ public class RegistroUsuario extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(),"Usuario: "+idResultante,Toast.LENGTH_SHORT).show();
 
+        conn.close();
 
     }
 

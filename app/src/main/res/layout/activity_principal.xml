@@ -26,6 +26,7 @@
         android:layout_marginStart="144dp"
         android:layout_marginLeft="144dp"
         android:layout_marginTop="60dp"
+        android:onClick="abrirIntListas"
         android:text="@string/bt_listas_String"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"

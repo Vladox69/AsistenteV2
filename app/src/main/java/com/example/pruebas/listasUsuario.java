@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.pruebas.entidades.ComprasPlanificadas;
 import com.example.pruebas.entidades.Producto;
@@ -41,6 +44,18 @@ public class listasUsuario extends AppCompatActivity {
 
         if(listaCompras.size()!=0){
             adapterListas adapter=new adapterListas(listaCompras);
+            adapter.setOnclickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    String idLista=listaCompras.get(recyclerListas.getChildAdapterPosition(v)).getNumeroCompra();
+                    Intent intProductosLista =new Intent(getApplicationContext(),productosLista.class);
+                    intProductosLista.putExtra("iddetalle",idLista);
+                    startActivity(intProductosLista);
+                    //Toast.makeText(getApplicationContext(),"Selección:"+idLista,Toast.LENGTH_SHORT).show();
+
+                }
+            });
             recyclerListas.setAdapter(adapter);
         }
 

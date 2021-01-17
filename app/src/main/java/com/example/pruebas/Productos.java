@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.pruebas.entidades.Producto;
 import com.example.pruebas.utilidades.Utilidades;
@@ -21,10 +23,12 @@ import java.util.ArrayList;
 public class Productos extends AppCompatActivity {
 
     ArrayList<Producto> listaProductos;
+    ArrayList<Producto> productosSeleccionados;
     ArrayList<String> listCategorias;
     ConexionSQLiteHelper conn;
     RecyclerView recyclerProductos;
-    public static Spinner comboCategorias;
+    Spinner comboCategorias;
+    int listIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,9 @@ public class Productos extends AppCompatActivity {
         cargarComboCategorias();
 
         consultarListaProductos();
+
+        Bundle parametros = getIntent().getExtras();
+        listIndex = parametros.getInt("idlista");
 
         comboCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -58,7 +65,6 @@ public class Productos extends AppCompatActivity {
                     adapterProductos adapter=new adapterProductos(filtrados);
                     recyclerProductos.setAdapter(adapter);
                 }else{
-
                     adapterProductos adapter=new adapterProductos(listaProductos);
                     recyclerProductos.setAdapter(adapter);
                 }
@@ -94,24 +100,38 @@ public class Productos extends AppCompatActivity {
             Log.i("Cate",producto.getCategoriProducto());
             listaProductos.add(producto);
         }
+        conn.close();
     }
 
-    /*public void listaProductosFiltrada(ArrayList<Producto> lista){
-    String nombreCategoria=comboCategorias.getSelectedItem().toString();
-    Log.i("diferenciar",nombreCategoria);
-    Producto producto=null;
-    listaProductosFiltrados=new ArrayList<Producto>();
-    for(int i=0;i<lista.size();i++){
-        if(lista.get(i).getCategoriProducto().equals(nombreCategoria)){
-            producto=new Producto();
-            producto.setNombreProducto(lista.get(i).getNombreProducto());
-            producto.setCategoriProducto(lista.get(i).getCategoriProducto());
-            producto.setSeleccion(lista.get(i).isSeleccion());
-            Log.i("Categorias",lista.get(i).getCategoriProducto());
-            listaProductosFiltrados.add(producto);
+    public void listaProductosMarcados(){
+        productosSeleccionados=new ArrayList<Producto>();
+        for(int i=0;i<listaProductos.size();i++){
+            if(listaProductos.get(i).isSeleccion()){
+                productosSeleccionados.add(listaProductos.get(i));
+                //Log.i("Prod",productosSeleccionados.get(i).getNombreProducto());
+            }
         }
+
     }
 
-    }*/
+    public void guardarProductos(View view){
+        listaProductosMarcados();
+        conn=new ConexionSQLiteHelper(getApplicationContext());
+
+        SQLiteDatabase db=conn.getWritableDatabase();
+
+        for(int i=0;i<productosSeleccionados.size();i++){
+            ContentValues values=new ContentValues();
+            values.put("NOM_PRO_DET",productosSeleccionados.get(i).getNombreProducto());
+            values.put("NUM_COM_DET",listIndex);
+
+            Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
+
+            Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+        }
+
+        conn.close();
+
+    }
 
 }
