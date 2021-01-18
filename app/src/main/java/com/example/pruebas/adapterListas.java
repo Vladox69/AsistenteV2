@@ -1,14 +1,18 @@
 package com.example.pruebas;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.pruebas.entidades.ComprasPlanificadas;
@@ -51,13 +55,33 @@ public class adapterListas extends RecyclerView.Adapter<adapterListas.ViewHolder
             public boolean onLongClick(View v) {
                 String idLista=listaCompras.get(position).getNumeroCompra();
                 String idUsuario=listaCompras.get(position).getCedulaUsuario();
-                borrarItems(idLista);
-                borrarLista(idUsuario,idLista);
-                return true;
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+                    builder.setTitle("Confirmación");
+                    builder.setMessage("Esta seguro de eliminar la lista");
+                    builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            borrarItems(idLista);
+                            borrarLista(idUsuario,idLista);
+                            listaCompras=cargarListaComprasActulizada(idUsuario);
+                            notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                    });
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+                    AlertDialog alert = builder.create();
+                    alert.show();
+                    return false;
             }
         });
 
     }
+
+
 
     ConexionSQLiteHelper conn;
     private void borrarItems(String idlista) {
@@ -67,6 +91,7 @@ public class adapterListas extends RecyclerView.Adapter<adapterListas.ViewHolder
         db.execSQL(queryDeleteDetalle);
         db.close();
     }
+
     private  void borrarLista(String idUsuario,String idLista){
         conn=new ConexionSQLiteHelper(activity);
         SQLiteDatabase db=conn.getReadableDatabase();
@@ -74,6 +99,23 @@ public class adapterListas extends RecyclerView.Adapter<adapterListas.ViewHolder
         db.execSQL(queryDeleteDetalle);
         db.close();
 
+    }
+
+    public ArrayList<ComprasPlanificadas> cargarListaComprasActulizada(String idUsuario){
+        SQLiteDatabase db=conn.getReadableDatabase();
+        ComprasPlanificadas compra=null;
+        ArrayList<ComprasPlanificadas> lista=new ArrayList<ComprasPlanificadas>();
+        Cursor cursor =db.rawQuery("SELECT * FROM COMPRAS_PLANIFICADAS WHERE CED_USU_COM='"+idUsuario+"'",null);
+        while (cursor.moveToNext()){
+            compra=new ComprasPlanificadas();
+            compra.setNumeroCompra(cursor.getString(0));
+            compra.setNombreCompra(cursor.getString(1));
+            compra.setCedulaUsuario(cursor.getString(2));
+            Log.i("Cate",compra.getNombreCompra());
+            lista.add(compra);
+        }
+        conn.close();
+        return lista;
     }
 
     @Override

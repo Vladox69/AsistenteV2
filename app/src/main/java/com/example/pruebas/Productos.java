@@ -109,7 +109,6 @@ public class Productos extends AppCompatActivity {
     }
 
     public void listaProductosMarcados(){
-
         productosSeleccionados=new ArrayList<Producto>();
         for(int i=0;i<listaProductos.size();i++){
             if(listaProductos.get(i).isSeleccion()){
@@ -135,6 +134,7 @@ public class Productos extends AppCompatActivity {
                 Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
 
                 Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+
             }
         }else{
             for(int i=0;i<productosSeleccionados.size();i++){
@@ -147,15 +147,15 @@ public class Productos extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
             }
-        }
 
+        }
+        regresarIntListas();
         conn.close();
-        regresarIntPrincipal();
     }
 
-    public void regresarIntPrincipal(){
-        Intent intPrincipal =new Intent(this,Principal.class);
-        startActivity(intPrincipal);
+    public void regresarIntListas(){
+        Intent intListasUsuario =new Intent(this,listasUsuario.class);
+        startActivity(intListasUsuario);
     }
 
 }
