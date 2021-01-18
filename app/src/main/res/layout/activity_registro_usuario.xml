@@ -41,7 +41,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="72dp"
-        android:onClick="llamadoMetodoRegistro"
+        android:onClick="guardarUsuarios"
         android:text="@string/bt_registrar_String"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
