@@ -48,8 +48,7 @@ public class RegistroUsuario extends AppCompatActivity {
         Long idResultante=db.insert("USUARIOS","CED_USU",values);
 
         Toast.makeText(getApplicationContext(),"Usuario: "+idResultante,Toast.LENGTH_SHORT).show();
-
-        conn.close();
+        //conn.close();
     }
 
     public void guardarUsuarios(View view){
@@ -64,6 +63,7 @@ public class RegistroUsuario extends AppCompatActivity {
                 registrarUsuarios();
                 Intent categorias = new Intent(this, MainActivity.class);
                 startActivity(categorias);
+                conn.close();
             }
         }else{
             Toast.makeText(this, "Llene los campos", Toast.LENGTH_SHORT).show();

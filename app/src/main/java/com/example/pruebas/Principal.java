@@ -41,4 +41,11 @@ public class Principal extends AppCompatActivity {
         startActivity(intListasUsuario);
     }
 
+    public void cerraSesion(View view){
+        preferences.edit().clear().apply();
+        Intent inicio = new Intent(this, MainActivity.class);
+        inicio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(inicio);
+    }
+
 }
