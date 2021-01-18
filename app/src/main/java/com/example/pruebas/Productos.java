@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class Productos extends AppCompatActivity {
     RecyclerView recyclerProductos;
     Spinner comboCategorias;
     int listIndex;
+    String listaAgregar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +50,9 @@ public class Productos extends AppCompatActivity {
         Bundle parametros = getIntent().getExtras();
         listIndex = parametros.getInt("idlista");
 
+        Bundle parametrosAgregar = getIntent().getExtras();
+        listaAgregar = parametrosAgregar.getString("idcompra");
+
         comboCategorias.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -62,10 +67,10 @@ public class Productos extends AppCompatActivity {
                             filtrados.add(producto);
                         }
                     }
-                    adapterProductos adapter=new adapterProductos(filtrados);
+                    adapterProductos adapter=new adapterProductos(filtrados,Productos.this);
                     recyclerProductos.setAdapter(adapter);
                 }else{
-                    adapterProductos adapter=new adapterProductos(listaProductos);
+                    adapterProductos adapter=new adapterProductos(listaProductos,Productos.this);
                     recyclerProductos.setAdapter(adapter);
                 }
             }
@@ -104,11 +109,12 @@ public class Productos extends AppCompatActivity {
     }
 
     public void listaProductosMarcados(){
+
         productosSeleccionados=new ArrayList<Producto>();
         for(int i=0;i<listaProductos.size();i++){
             if(listaProductos.get(i).isSeleccion()){
                 productosSeleccionados.add(listaProductos.get(i));
-                //Log.i("Prod",productosSeleccionados.get(i).getNombreProducto());
+
             }
         }
 
@@ -120,18 +126,36 @@ public class Productos extends AppCompatActivity {
 
         SQLiteDatabase db=conn.getWritableDatabase();
 
-        for(int i=0;i<productosSeleccionados.size();i++){
-            ContentValues values=new ContentValues();
-            values.put("NOM_PRO_DET",productosSeleccionados.get(i).getNombreProducto());
-            values.put("NUM_COM_DET",listIndex);
+        if(listaAgregar==null){
+            for(int i=0;i<productosSeleccionados.size();i++){
+                ContentValues values=new ContentValues();
+                values.put("NOM_PRO_DET",productosSeleccionados.get(i).getNombreProducto());
+                values.put("NUM_COM_DET",listIndex);
 
-            Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
+                Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
 
-            Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            for(int i=0;i<productosSeleccionados.size();i++){
+
+                ContentValues values=new ContentValues();
+                values.put("NOM_PRO_DET",productosSeleccionados.get(i).getNombreProducto());
+                values.put("NUM_COM_DET",listaAgregar);
+
+                Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
+
+                Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+            }
         }
 
         conn.close();
+        regresarIntPrincipal();
+    }
 
+    public void regresarIntPrincipal(){
+        Intent intPrincipal =new Intent(this,Principal.class);
+        startActivity(intPrincipal);
     }
 
 }

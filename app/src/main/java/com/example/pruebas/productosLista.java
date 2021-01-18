@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.pruebas.entidades.Producto;
@@ -36,7 +38,7 @@ public class productosLista extends AppCompatActivity {
 
         cargarTusProductos();
 
-        adapterProductos adapter=new adapterProductos(tusProductos);
+        adapterProductosLista adapter=new adapterProductosLista(tusProductos,productosLista.this);
         recyclerTusProductos.setAdapter(adapter);
 
     }
@@ -45,17 +47,24 @@ public class productosLista extends AppCompatActivity {
         SQLiteDatabase db=conn.getReadableDatabase();
         Producto producto=null;
         tusProductos=new ArrayList<Producto>();
-        Bundle parametros = getIntent().getExtras();
-        Toast.makeText(getApplicationContext(),"Selección:"+parametros.getInt("iddetalle"),Toast.LENGTH_SHORT).show();
-        Cursor cursor =db.rawQuery("SELECT * FROM DETALLE_COMPRAS WHERE NUM_COM_DET='"+listIndex+"'",null);
+        Toast.makeText(getApplicationContext(),"Selección:"+listIndex,Toast.LENGTH_SHORT).show();
+        Cursor cursor =db.rawQuery("SELECT * FROM PRODUCTOS WHERE NOM_PRO IN (SELECT NOM_PRO_DET FROM DETALLE_COMPRAS WHERE NUM_COM_DET ='"+listIndex+"')",null);
+        //String sql="SELECT * FROM PRODUCTOS WHERE NOM_PRO =(SELECT NOM_PRO_DET FROM DETALLE_COMPRAS WHERE NUM_COM_DET =')"+listIndex+"'";
         while (cursor.moveToNext()){
             producto=new Producto();
-            producto.setNombreProducto(cursor.getString(1));
+            producto.setNombreProducto(cursor.getString(0));
             producto.setCategoriProducto(null);
             //Log.i("Cate",producto.getCategoriProducto());
             tusProductos.add(producto);
         }
         conn.close();
     }
+
+    public void agregarProductosLista(View view){
+        Intent intProductos =new Intent(this,Productos.class);
+        intProductos.putExtra("idcompra",listIndex);
+        startActivity(intProductos);
+    }
+
 
 }

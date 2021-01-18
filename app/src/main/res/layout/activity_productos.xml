@@ -8,10 +8,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductos"
-        android:layout_width="409dp"
-        android:layout_height="669dp"
+        android:layout_width="420dp"
+        android:layout_height="506dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.615"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/comboCategorias" />
 

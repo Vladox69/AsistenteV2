@@ -18,10 +18,21 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvTusProductos"
-        android:layout_width="413dp"
-        android:layout_height="643dp"
+        android:layout_width="407dp"
+        android:layout_height="420dp"
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTusProductos" />
+
+    <Button
+        android:id="@+id/btAgregarProductos"
+        android:layout_width="347dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="12dp"
+        android:onClick="agregarProductosLista"
+        android:text="@string/txt_agregar_productos_String"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvTusProductos" />
 </androidx.constraintlayout.widget.ConstraintLayout>

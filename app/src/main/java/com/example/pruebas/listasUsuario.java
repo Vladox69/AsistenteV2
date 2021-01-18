@@ -26,38 +26,27 @@ public class listasUsuario extends AppCompatActivity {
     SharedPreferences preferences;
     String cedula;
     String nombre;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas_usuario);
 
-        conn=new ConexionSQLiteHelper(getApplicationContext());
+        conn = new ConexionSQLiteHelper(getApplicationContext());
 
-        recyclerListas= (RecyclerView) findViewById(R.id.rvListasUsuario);
-        recyclerListas.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false));
+        recyclerListas = (RecyclerView) findViewById(R.id.rvListasUsuario);
+        recyclerListas.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        preferences=getSharedPreferences("Preferences",MODE_PRIVATE);
-        cedula=preferences.getString("CED_USU",null);
-        nombre=preferences.getString("NOM_USU",null);
+        preferences = getSharedPreferences("Preferences", MODE_PRIVATE);
+        cedula = preferences.getString("CED_USU", null);
+        nombre = preferences.getString("NOM_USU", null);
 
         cargarListaCompras();
 
-        if(listaCompras.size()!=0){
-            adapterListas adapter=new adapterListas(listaCompras);
-            adapter.setOnclickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        adapterListas adapter = new adapterListas(listaCompras, this);
 
-                    String idLista=listaCompras.get(recyclerListas.getChildAdapterPosition(v)).getNumeroCompra();
-                    Intent intProductosLista =new Intent(getApplicationContext(),productosLista.class);
-                    intProductosLista.putExtra("iddetalle",idLista);
-                    startActivity(intProductosLista);
-                    //Toast.makeText(getApplicationContext(),"Selección:"+idLista,Toast.LENGTH_SHORT).show();
+        recyclerListas.setAdapter(adapter);
 
-                }
-            });
-            recyclerListas.setAdapter(adapter);
-        }
 
     }
 

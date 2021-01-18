@@ -1,5 +1,8 @@
 package com.example.pruebas;
 
+import android.app.Activity;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,14 +18,19 @@ import java.util.ArrayList;
 
 public class adapterProductos extends RecyclerView.Adapter<adapterProductos.ViewHolderProductos> {
     ArrayList<Producto> ListProductos;
+    Activity activity;
+    String idLista;
 
-    public adapterProductos(ArrayList<Producto> listProductos) {
+    public adapterProductos(ArrayList<Producto> listProductos,Activity activity) {
         ListProductos = listProductos;
+        this.activity=activity;
     }
 
     @NonNull
     @Override
     public adapterProductos.ViewHolderProductos onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Bundle parametros = activity.getIntent().getExtras();
+        idLista = parametros.getString("iddetalle");
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_producto,null,false);
         return new ViewHolderProductos(view);
     }
@@ -37,6 +45,16 @@ public class adapterProductos extends RecyclerView.Adapter<adapterProductos.View
                 ListProductos.get(position).setSeleccion(isChecked);
             }
         });
+    }
+
+    ConexionSQLiteHelper conn;
+    private void borrarItem(String idlista,String idproducto) {
+        conn=new ConexionSQLiteHelper(activity);
+        SQLiteDatabase db=conn.getReadableDatabase();
+        String queryDeleteDetalle = "DELETE FROM DETALLE_COMPRAS WHERE NUM_COM_DET = '" + idlista + "' AND NOM_PRO_DET = '"+idproducto+"'";
+        db.execSQL(queryDeleteDetalle);
+        db.close();
+        notifyDataSetChanged();
     }
 
     @Override
