@@ -97,7 +97,7 @@ public class crearLista extends AppCompatActivity {
     //metodo para asiganr funciones correspondintes a las opciones
     public boolean onOptionsItemSelected(MenuItem item){
         int id = item.getItemId();
-        if( id== R.id.cerrarSesion ){
+        if( id== R.id.inicio ){
             inicio();
         }
         return super.onOptionsItemSelected(item);
