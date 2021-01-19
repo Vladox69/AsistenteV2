@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -41,11 +43,26 @@ public class Principal extends AppCompatActivity {
         startActivity(intListasUsuario);
     }
 
-    public void cerraSesion(View view){
+    public void cerraSesion(){
         preferences.edit().clear().apply();
         Intent inicio = new Intent(this, MainActivity.class);
         inicio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(inicio);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.overflow, menu);
+        return true;
+    }
+
+    //metodo para asiganr funciones correspondintes a las opciones
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if( id== R.id.cerrarSesion ){
+            cerraSesion();
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
 }

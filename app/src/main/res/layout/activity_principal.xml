@@ -62,15 +62,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/imagenprincipal" />
 
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="157dp"
-        android:layout_height="42dp"
-        android:layout_marginTop="20dp"
-        android:onClick="cerraSesion"
-        android:text="@string/bnCerraSe"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

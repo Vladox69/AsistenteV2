@@ -3,6 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/cerrarSesion"
-        android:title="@string/bnCerraSe" />
+        android:id="@+id/inicio"
+        android:icon="@drawable/inicio2"
+        android:title="@string/bnCerraSe"
+        app:showAsAction="always" />
 </menu>

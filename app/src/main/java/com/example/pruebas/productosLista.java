@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -60,10 +62,23 @@ public class productosLista extends AppCompatActivity {
         conn.close();
     }
 
-    public void agregarProductosLista(View view){
-        Intent intProductos =new Intent(this,Productos.class);
-        intProductos.putExtra("idcompra",listIndex);
-        startActivity(intProductos);
+    public void inicio(){
+        Intent inicio = new Intent(this, Principal.class);
+        startActivity(inicio);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menuinicio, menu);
+        return true;
+    }
+
+    //metodo para asiganr funciones correspondintes a las opciones
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if( id== R.id.inicio ){
+            inicio();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

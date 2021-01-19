@@ -8,6 +8,8 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -79,6 +81,26 @@ public class crearLista extends AppCompatActivity {
         while (cursor.moveToNext()){
             ultimoIndice =cursor.getInt(0);
         }
+    }
+
+    public void inicio(){
+        Intent inicio = new Intent(this, Principal.class);
+        inicio.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(inicio);
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menuinicio, menu);
+        return true;
+    }
+
+    //metodo para asiganr funciones correspondintes a las opciones
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+        if( id== R.id.cerrarSesion ){
+            inicio();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

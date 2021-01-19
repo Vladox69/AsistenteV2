@@ -113,6 +113,7 @@ public class adapterProductosLista extends RecyclerView.Adapter<adapterProductos
         public void asignarProductosLista(Producto producto) {
             nombreProductos.setText(producto.getNombreProducto());
         }
-
     }
+
+
 }
