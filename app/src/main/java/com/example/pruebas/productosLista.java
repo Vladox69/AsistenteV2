@@ -81,5 +81,11 @@ public class productosLista extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void agregarProductosLista(View view){
+        Intent intProductos =new Intent(this,Productos.class);
+        intProductos.putExtra("idcompra",listIndex);
+        startActivity(intProductos);
+    }
+
 
 }
