@@ -49,7 +49,7 @@ public class productosLista extends AppCompatActivity {
         SQLiteDatabase db=conn.getReadableDatabase();
         Producto producto=null;
         tusProductos=new ArrayList<Producto>();
-        Toast.makeText(getApplicationContext(),"Selección:"+listIndex,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Selección:"+listIndex,Toast.LENGTH_SHORT).show();
         Cursor cursor =db.rawQuery("SELECT * FROM PRODUCTOS WHERE NOM_PRO IN (SELECT NOM_PRO_DET FROM DETALLE_COMPRAS WHERE NUM_COM_DET ='"+listIndex+"')",null);
         //String sql="SELECT * FROM PRODUCTOS WHERE NOM_PRO =(SELECT NOM_PRO_DET FROM DETALLE_COMPRAS WHERE NUM_COM_DET =')"+listIndex+"'";
         while (cursor.moveToNext()){

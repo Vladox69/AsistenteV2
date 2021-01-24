@@ -62,7 +62,7 @@ public class listasUsuario extends AppCompatActivity {
             compra.setNumeroCompra(cursor.getString(0));
             compra.setNombreCompra(cursor.getString(1));
             compra.setCedulaUsuario(cursor.getString(2));
-            Log.i("Cate",compra.getNombreCompra());
+            //Log.i("Cate",compra.getNombreCompra());
             listaCompras.add(compra);
         }
         conn.close();

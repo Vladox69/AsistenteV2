@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/nuevousuario"
+    android:background="#F8F7F7"
     tools:context=".RegistroUsuario">
 
     <Button
@@ -27,12 +27,12 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="48dp"
-        android:background="#5C27B0"
+        android:background="#F8F7F7"
         android:ems="10"
         android:hint="@string/txt_nombre_String"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#000000"
+        android:textColorHint="#807878"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtCedula" />
@@ -44,12 +44,12 @@
         android:layout_marginStart="40dp"
         android:layout_marginLeft="40dp"
         android:layout_marginTop="164dp"
-        android:background="#5C27B0"
+        android:background="#F8F7F7"
         android:ems="10"
         android:hint="@string/txt_usuario_String"
         android:inputType="textPersonName"
-        android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
+        android:textColor="#000000"
+        android:textColorHint="#807878"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

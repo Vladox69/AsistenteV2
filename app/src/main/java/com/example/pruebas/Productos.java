@@ -65,7 +65,7 @@ public class Productos extends AppCompatActivity {
                     for(int i=0;i<listaProductos.size();i++){
                         if(listaProductos.get(i).getCategoriProducto().equals(nombreCategoria)){
                             producto=listaProductos.get(i);
-                            Log.i("Categorias",listaProductos.get(i).getCategoriProducto());
+                            //Log.i("Categorias",listaProductos.get(i).getCategoriProducto());
                             filtrados.add(producto);
                         }
                     }
@@ -104,7 +104,7 @@ public class Productos extends AppCompatActivity {
             producto=new Producto();
             producto.setNombreProducto(cursor.getString(0));
             producto.setCategoriProducto(cursor.getString(1));
-            Log.i("Cate",producto.getCategoriProducto());
+            //Log.i("Cate",producto.getCategoriProducto());
             listaProductos.add(producto);
         }
         conn.close();
@@ -135,7 +135,7 @@ public class Productos extends AppCompatActivity {
 
                 Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
 
-                Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
 
             }
         }else{
@@ -147,7 +147,7 @@ public class Productos extends AppCompatActivity {
 
                 Long idResultante=db.insert("DETALLE_COMPRAS","ID_DET",values);
 
-                Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(),"PRODUCTOS: "+productosSeleccionados.get(i).getNombreProducto(),Toast.LENGTH_SHORT).show();
             }
 
         }

@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class crearLista extends AppCompatActivity {
     ConexionSQLiteHelper conn;
     EditText nombreLista;
-    TextView txtPrueba;
+    //TextView txtPrueba;
     SharedPreferences preferences;
     String cedula,nombre;
     int ultimoIndice;
@@ -33,12 +33,12 @@ public class crearLista extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crear_lista);
         nombreLista=(EditText) findViewById(R.id.txtNombreLista);
-        txtPrueba=(TextView) findViewById(R.id.idUsuarioPrueba);
+        //txtPrueba=(TextView) findViewById(R.id.idUsuarioPrueba);
         preferences=getSharedPreferences("Preferences",MODE_PRIVATE);
         cedula=preferences.getString("CED_USU",null);
         nombre=preferences.getString("NOM_USU",null);
         if(cedula!=null && nombre!=null){
-            txtPrueba.setText("Bienvenido "+nombre+" "+cedula);
+            //txtPrueba.setText("Bienvenido "+nombre+" "+cedula);
         }
     }
 
@@ -58,7 +58,7 @@ public class crearLista extends AppCompatActivity {
 
         //db.execSQL(sql);
 
-        Toast.makeText(getApplicationContext(),"COMPRA: "+nombreLista.getText().toString(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"COMPRA: "+nombreLista.getText().toString(),Toast.LENGTH_SHORT).show();
 
         conn.close();
     }

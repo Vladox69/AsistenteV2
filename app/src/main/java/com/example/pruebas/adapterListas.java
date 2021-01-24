@@ -57,7 +57,7 @@ public class adapterListas extends RecyclerView.Adapter<adapterListas.ViewHolder
                 String idUsuario=listaCompras.get(position).getCedulaUsuario();
                     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                     builder.setTitle("Confirmación");
-                    builder.setMessage("Esta seguro de eliminar la lista");
+                    builder.setMessage("Está seguro de eliminar la lista");
                     builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             borrarItems(idLista);

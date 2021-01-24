@@ -45,7 +45,7 @@ public class nuevaLista extends AppCompatActivity {
 
         Long idResultante = db.insert("COMPRAS_PLANIFICADAS","NUM_COM",values);
 
-        Toast.makeText(getApplicationContext(), "Lista Numero: " + idResultante,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(), "Lista Numero: " + idResultante,Toast.LENGTH_SHORT).show();
     }
 
     public void inicio(){

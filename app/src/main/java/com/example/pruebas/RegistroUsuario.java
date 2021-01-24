@@ -47,7 +47,7 @@ public class RegistroUsuario extends AppCompatActivity {
 
         Long idResultante=db.insert("USUARIOS","CED_USU",values);
 
-        Toast.makeText(getApplicationContext(),"Usuario: "+idResultante,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"Usuario: "+idResultante,Toast.LENGTH_SHORT).show();
         //conn.close();
     }
 

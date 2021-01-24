@@ -19,7 +19,7 @@
     <string name="txtListaGuardada">Lista Guardada</string>
     <string name="txt_nombre_lista_String">Nombre de tu lista</string>
     <string name="txt_tus_listas_String">Tus listas</string>
-    <string name="txt_tus_productos_String">Tus productos</string>
+    <string name="txt_tus_productos_String">TUS PRODUCTOS</string>
     <string name="txt_agregar_productos_String">Agregar productos</string>
     <string name="bnCerraSe">Cerrar Sesión</string>
 </resources>
