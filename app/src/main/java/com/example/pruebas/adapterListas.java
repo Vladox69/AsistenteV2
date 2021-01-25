@@ -20,6 +20,8 @@ import com.example.pruebas.entidades.ComprasPlanificadas;
 import java.util.ArrayList;
 
 public class adapterListas extends RecyclerView.Adapter<adapterListas.ViewHolderListas> implements View.OnClickListener {
+    //
+
     Activity activity;
     public adapterListas(ArrayList<ComprasPlanificadas> listaCompras,Activity activity) {
         this.listaCompras = listaCompras;

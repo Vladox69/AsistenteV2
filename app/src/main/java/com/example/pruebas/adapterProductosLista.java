@@ -50,7 +50,7 @@ public class adapterProductosLista extends RecyclerView.Adapter<adapterProductos
                 String idProducto=ListProductos.get(position).getNombreProducto();
                 AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                 builder.setTitle("Confirmación");
-                builder.setMessage("Esta seguro de eliminar la lista");
+                builder.setMessage("Esta seguro de eliminar el producto");
                 builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         borrarItem(idLista,idProducto);

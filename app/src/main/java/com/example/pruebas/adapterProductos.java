@@ -47,15 +47,6 @@ public class adapterProductos extends RecyclerView.Adapter<adapterProductos.View
         });
     }
 
-    ConexionSQLiteHelper conn;
-    private void borrarItem(String idlista,String idproducto) {
-        conn=new ConexionSQLiteHelper(activity);
-        SQLiteDatabase db=conn.getReadableDatabase();
-        String queryDeleteDetalle = "DELETE FROM DETALLE_COMPRAS WHERE NUM_COM_DET = '" + idlista + "' AND NOM_PRO_DET = '"+idproducto+"'";
-        db.execSQL(queryDeleteDetalle);
-        db.close();
-        notifyDataSetChanged();
-    }
 
     @Override
     public int getItemCount() {

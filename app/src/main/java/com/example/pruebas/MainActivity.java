@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     ConexionSQLiteHelper conn;
     EditText cedula;
     Usuario usuario;
-    SharedPreferences preferences;
+    SharedPreferences preferences=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         conn=new ConexionSQLiteHelper(MainActivity.this);
         cedula=(EditText)findViewById(R.id.txtUsuario);
-        preferences=getSharedPreferences("Preferences",MODE_PRIVATE);
+
+            preferences=getSharedPreferences("Preferences",MODE_PRIVATE);
+            verificarSesion();
+
         conn.addEntry2();
-        verificarSesion();
+
     }
 
     public void abrirIntRegistrarUsuario(View view){
